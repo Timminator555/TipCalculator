@@ -1,0 +1,20 @@
+name: Build iOS SwiftUI App
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Compile iOS Target via Xcodebuild
+    runs-on: macos-26
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild -swift-package -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14 Pro" build
