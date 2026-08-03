@@ -15,6 +15,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Build for iOS Simulator
+      - name: Build Swift Package for iOS Simulator
         run: |
-          xcodebuild -swift-package -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14 Pro" build
+          xcodebuild build -scheme TipCalculatorApp-Package -sdk iphonesimulator -destination "generic/platform=iOS Simulator"
