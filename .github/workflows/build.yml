@@ -8,17 +8,15 @@ on:
 
 jobs:
   build:
-    name: Compile SwiftUI App for iOS Simulator
+    name: Compile SwiftUI Package for iOS Simulator
     runs-on: macos-26
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Build Swift Package via Xcodebuild
+      - name: Build Swift Package for iOS Simulator
         run: |
-          xcodebuild build \
-            --package-path . \
-            --scheme TipCalculatorApp-Package \
-            --sdk iphonesimulator \
-            --destination "generic/platform=iOS Simulator"
+          swift build \
+            --sdk $(xcrun --sdk iphonesimulator --show-sdk-path) \
+            --triple arm64-apple-ios16.0-simulator
