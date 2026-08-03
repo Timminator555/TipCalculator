@@ -15,14 +15,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Generate Xcode Project Wrapper & Build
+      - name: Build Swift Package via Xcodebuild
         run: |
-          # Swift packages can automatically generate an Xcode project structure for building
-          swift package generate-xcodeproj
-          
-          # Build using the generated project and generic iOS simulator platform
           xcodebuild build \
-            --project TipCalculatorApp.xcodeproj \
+            --package-path . \
             --scheme TipCalculatorApp-Package \
             --sdk iphonesimulator \
             --destination "generic/platform=iOS Simulator"
