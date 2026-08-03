@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Compile Swift Package for iOS
+    name: Compile Swift Package for iOS Simulator
     runs-on: macos-26
 
     steps:
@@ -17,4 +17,6 @@ jobs:
 
       - name: Build Swift Package for iOS Simulator
         run: |
-          swift build -Xswiftc -sdk -Xswiftc $(xcrun --sdk iphonesimulator --show-sdk-path) -Xswiftc -target -Xswiftc x86_64-apple-ios16.0-simulator
+          swift build \
+            -sdk $(xcrun --sdk iphonesimulator --show-sdk-path) \
+            -target x86_64-apple-ios16.0-simulator
